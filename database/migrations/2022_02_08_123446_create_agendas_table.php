@@ -23,8 +23,8 @@ class CreateAgendasTable extends Migration
             $table->enum('status', ['cancelado', 'atendido', 'faltante', 'agendado'])->default('agendado');
             $table->timestamps();
             
-            $table->foreign('pet_id', 'agendas_pet_id_foreign')->references('id')->on('pets')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign('servico_id', 'agendas_servico_id_foreign')->references('id')->on('servicos')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('pet_id', 'agendas_pet_id_foreign')->references('id')->on('pets')->onDelete('cascade');
+            $table->foreign('servico_id', 'agendas_servico_id_foreign')->references('id')->on('servicos')->onDelete('cascade');
         });
     }
 

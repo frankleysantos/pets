@@ -19,7 +19,7 @@ class CreateRacasTable extends Migration
             $table->string('nome', 255);
             $table->timestamps();
             
-            $table->foreign('especie_id', 'racas_especie_id_foreign')->references('id')->on('especies')->onDelete('cascade')->onUpdate('restrict');
+            $table->foreign('especie_id', 'racas_especie_id_foreign')->references('id')->on('especies')->onDelete('cascade');
         });
     }
 

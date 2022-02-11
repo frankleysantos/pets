@@ -433,7 +433,6 @@ export default {
             vm.$snotify.error('Você irá excluir o pet e os agendamentos vinculados a ele. Deseja continuar?', 'Exclusão do Pet', {
                 timeout: 10000,
                 showProgressBar: true,
-                closeOnClick: false,
                 pauseOnHover: true,
                 buttons: [
                     {text: 'Yes', action: (toast) => {
@@ -442,8 +441,8 @@ export default {
                             this.$snotify.error('Removido com sucesso');
                         })
                         vm.$snotify.remove(toast.id)
-                    }},
-                    {text: 'Close', action: (toast) => {vm.$snotify.remove(toast.id);}, bold: true},
+                    }, bold: true},
+                    {text: 'Não', action: (toast) => {vm.$snotify.remove(toast.id);}, bold: true},
                 ],
             });
         }

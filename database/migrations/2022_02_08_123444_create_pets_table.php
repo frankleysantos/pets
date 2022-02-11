@@ -20,8 +20,8 @@ class CreatePetsTable extends Migration
             $table->string('nome', 255);
             $table->timestamps();
             
-            $table->foreign('cliente_id', 'pets_cliente_id_foreign')->references('id')->on('clientes')->onDelete('cascade')->onUpdate('restrict');
-            $table->foreign('raca_id', 'pets_raca_id_foreign')->references('id')->on('racas')->onDelete('cascade')->onUpdate('restrict');
+            $table->foreign('cliente_id', 'pets_cliente_id_foreign')->references('id')->on('clientes')->onDelete('cascade');
+            $table->foreign('raca_id', 'pets_raca_id_foreign')->references('id')->on('racas')->onDelete('cascade');
         });
     }
 
