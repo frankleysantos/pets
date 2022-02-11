@@ -1,12 +1,18 @@
 <template lang="">
     <div>
     <vue-snotify></vue-snotify>
-    <b-button v-b-toggle.sidebar-right>Cadastrar</b-button>
-    <b-sidebar id="sidebar-right" title="Cadastro Pet" right shadow>
+    <div class="row form-group">
+        <div class="col-md d-flex justify-content-end">
+            <b-button @click="sidebarCadastroPet" variant="info"><b-icon icon="plus-square"></b-icon></b-button>
+        </div>
+    </div>
+    
+    <b-sidebar id="sidebar-pet-cadastro" :title="!form.pet.update ? 'Cadastrar Dados Pet' : 'Atualizar Dados Pet' " right shadow>
       <div class="px-3 py-2">
         <b-form  @submit.prevent="cadastroPets" type="POST">
             <div class="row form-group">
                 <div class="col-md">
+                    <b-form-input v-model="pets.id" class="d-none"></b-form-input>
                     <b-input-group prepend="Nome" class="mt-3">
                         <b-form-input v-model="pets.nome" :state="validarNome" placeholder="Nome do Pet"></b-form-input>
                     </b-input-group>
@@ -29,11 +35,11 @@
 
             <div class="row form-group" v-if="mostraRaca">
                 <div class="col-md">
-                    <b-input-group prepend="RaÃ§a" class="mt-3">
+                    <b-input-group prepend="Racao" class="mt-3">
                         <b-form-select v-model="pets.raca" :options="options.raca"></b-form-select>
                     </b-input-group>
                     <b-form-invalid-feedback :state="validarRaca">
-                        Selecionar RaÃ§a.
+                        Selecionar Racao.
                     </b-form-invalid-feedback>
                     <b-form-input v-model="pets.cliente_id" class="d-none"></b-form-input>
                 </div>
@@ -42,21 +48,40 @@
             <div class="row form-group">
                 <div class="col-md d-flex justify-content-end">
                     <b-button type="submit" squared variant="success" :disabled="!mostraRaca">
-                        Salvar
+                        {{!form.pet.update ? 'Salvar' : 'Atualizar'}}
                     </b-button>  
                 </div>
             </div>                         
         </b-form>
       </div>
     </b-sidebar>
+
         <b-table striped hover :items="pet" :fields="fields">
             <template #cell(pet_id)="row">
-                <b-button size="sm" @click="agendamentoModal(row.item.pet_id, row.item.nome)" class="mr-2">
-                    Agendar
-                </b-button>
-                <b-button size="sm" @click="ultimoAgendamentoModal(row.item.pet_id, row.item.nome)" class="mr-2" variant="info">
-                    Ultimos Agendamentos
-                </b-button>
+                <b-dropdown variant="primary">
+                    <template #button-content>
+                        <b-icon icon="gear-fill" aria-hidden="true"></b-icon> Acoes
+                    </template>
+                    <b-dropdown-item-button variant="info" @click="agendamentoModal(row.item.pet_id, row.item.nome)">
+                        <b-icon icon="calendar2-date-fill" aria-hidden="true"></b-icon>
+                        Agendar
+                    </b-dropdown-item-button>
+                    <b-dropdown-divider></b-dropdown-divider>
+                    <b-dropdown-item-button variant="success" @click="ultimoAgendamentoModal(row.item.pet_id, row.item.nome)">
+                        <b-icon icon="calendar3" aria-hidden="true"></b-icon>
+                        Ultimos Agendamentos
+                    </b-dropdown-item-button>
+                    <b-dropdown-divider></b-dropdown-divider>
+                    <b-dropdown-item-button variant="info" @click="editPet(row.item.pet_id, row.item.nome, row.item.especie_id, row.item.raca_id)">
+                        <b-icon icon="pencil-square" aria-hidden="true"></b-icon>
+                        Alterar
+                    </b-dropdown-item-button>
+                    <b-dropdown-divider></b-dropdown-divider>
+                    <b-dropdown-item-button variant="danger" @click="deletePet(row.item.pet_id)">
+                        <b-icon icon="trash" aria-hidden="true"></b-icon>
+                        Deletar
+                    </b-dropdown-item-button>
+                </b-dropdown>
             </template>
         </b-table>
 
@@ -79,7 +104,7 @@
                             <b-form-select v-model="agenda.servico_id" :options="options.servicos" :state="validarServico"></b-form-select>
                         </b-input-group>
                         <b-form-invalid-feedback :state="validarServico">
-                            Selecione um tipo de serviÃ§o
+                            Selecione um tipo de servico
                         </b-form-invalid-feedback>
                     </div>
                 </div> 
@@ -93,7 +118,7 @@
                     <div class="col-md">
                         <b-form-input v-model="agenda.hora"  type="time" :state="validarHora"></b-form-input>
                         <b-form-invalid-feedback :state="validarHora">
-                            Insira o horÃ¡rio do agendamento
+                            Insira o horario do agendamento
                         </b-form-invalid-feedback>
                     </div>
                 </div>
@@ -103,7 +128,7 @@
                         <b-form-textarea
                             id="textarea"
                             v-model="agenda.observacao"
-                            placeholder="Insira alguma ObservaÃ§Ã£o"
+                            placeholder="Insira alguma Observacao"
                             rows="3"
                         ></b-form-textarea>
                     </div>
@@ -120,7 +145,7 @@
         </b-modal>
 
         <!-- modal de ultimos agendamentos do pet -->
-        <b-modal ref="my-modal-ultimos-agendamento" hide-footer title="Agendando o Pet" size="lg">
+        <b-modal ref="my-modal-ultimos-agendamento" hide-footer title="Ultimos agendamentos do Pet" size="lg">
             <b-table striped hover :items="tableUlitmoAgendamento" :fields="fieldsUlitmoAgendamento">
                 <template #cell(data)="row">
                     <b class="text-info" v-if="
@@ -149,7 +174,7 @@
                 <template #cell(agenda_id)="row">
                     <b-button variant="success" size="sm" @click="alterarStatus(row.item.agenda_id, 'atendido')" title="Confirmar Atendimento"><b-icon icon="check-square"></b-icon></b-button>
                     <b-button variant="danger" size="sm" @click="alterarStatus(row.item.agenda_id, 'cancelado')" title="Cancelar Atendimento"><b-icon icon="x-circle"></b-icon></b-button>
-                    <b-button variant="warning" size="sm" @click="alterarStatus(row.item.agenda_id, 'faltante')" title="Não compareceu"><b-icon icon="exclamation-triangle-fill"></b-icon></b-button>
+                    <b-button variant="warning" size="sm" @click="alterarStatus(row.item.agenda_id, 'faltante')" title="NÃÂ£o compareceu"><b-icon icon="exclamation-triangle-fill"></b-icon></b-button>
                 </template>
 
                 <template #cell(status)="row">
@@ -180,6 +205,14 @@ export default {
     },
     data() {
         return {
+            form: {
+                pet: {
+                    update: false
+                }
+            },
+            acoes: {
+                delete: false
+            },
             saveAgendamento: false,
             mostraRaca: false,
             agenda: {
@@ -191,6 +224,7 @@ export default {
                 observacao: null
             },
             pets: {
+                id: null,
                 cliente_id: '',
                 nome: '',
                 raca: null,
@@ -229,12 +263,12 @@ export default {
                     sortable: true
                 },
                 {
-                    label: 'Serviços',
+                    label: 'Servicos',
                     key: "servico",
                     sortable: true
                 },
                 {
-                    label: 'Ação',
+                    label: 'AÃÂ§ÃÂ£o',
                     key: "agenda_id",
                     sortable: true
                 },
@@ -260,6 +294,14 @@ export default {
         }
     },
     methods: {
+        sidebarCadastroPet: function () {
+            this.form.pet.update = false;
+            this.pets.id = null,
+            this.pets.nome= '',
+            this.pets.raca= null,
+            this.pets.especie= null
+            this.$root.$emit('bv::toggle::collapse', 'sidebar-pet-cadastro')
+        },
         cadastroPets: function() {
             if(!this.validarNome || !this.validarEspecie || !this.validarRaca) {
                 return ;
@@ -287,7 +329,7 @@ export default {
         },
         consultaServicos: function() {
             this.options.servicos.splice(0);
-            this.options.servicos.push({ value: null, text: 'Selecione o serviÃ§o...', disabled: true })
+            this.options.servicos.push({ value: null, text: 'Selecione o servico...', disabled: true })
             return this.$store.dispatch('showServico')
                         .then(() => {
                             let servicos = this.$store.state.pet.servicos;
@@ -301,7 +343,7 @@ export default {
         buscaRaca: function () {
             this.mostraRaca = false;
             this.options.raca.splice(0);
-            this.options.raca.push({ value: null, text: 'Selecione a RaÃ§a...', disabled: true  })
+            this.options.raca.push({ value: null, text: 'Selecione a raca...', disabled: true  })
             return this.$store.dispatch('showRaca', this.pets.especie)
                             .then(() => {
                                 let racas = this.$store.state.pet.racas;
@@ -336,11 +378,19 @@ export default {
                     this.$refs['my-modal-novo-agendamento'].hide();
                 })
         },
-        ultimoAgendamentoModal: function(pet_id, pet) {
-            this.$store.dispatch('showAgendamentosPet', pet_id)
+        ultimoAgendamentoModal: function(pet_id) {
+            this.ultimosAgendamentos(pet_id)
+            this.$refs['my-modal-ultimos-agendamento'].show();
+        },
+        ultimosAgendamentos: function (pet_id) {
+            return this.$store.dispatch('showAgendamentosPet', pet_id)
                 .then(() => {
                     this.tableUlitmoAgendamento = this.$store.state.agenda.agendados;
-                    this.$refs['my-modal-ultimos-agendamento'].show();
+                })
+                .finally(() => {
+                    if(this.tableUlitmoAgendamento.length == 0) {
+                        this.acoes.delete = true;
+                    }
                 })
         },
         alterarStatus: function(agenda_id, status) {
@@ -368,6 +418,34 @@ export default {
                                 break;
                         }
                     })
+        },
+        editPet: function(pet_id, pet, especie_id, raca_id) {
+            this.form.pet.update = true;
+            this.pets.id = pet_id;
+            this.pets.nome = pet;
+            this.pets.especie = especie_id;
+            this.buscaRaca()
+            this.pets.raca = raca_id;
+            this.$root.$emit('bv::toggle::collapse', 'sidebar-pet-cadastro')
+        },
+        deletePet: function(pet_id) {
+            var vm = this;
+            vm.$snotify.error('Você irá excluir o pet e os agendamentos vinculados a ele. Deseja continuar?', 'Exclusão do Pet', {
+                timeout: 10000,
+                showProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: true,
+                buttons: [
+                    {text: 'Yes', action: (toast) => {
+                        vm.$store.dispatch('deletePet', pet_id)
+                        .then(() => {
+                            this.$snotify.error('Removido com sucesso');
+                        })
+                        vm.$snotify.remove(toast.id)
+                    }},
+                    {text: 'Close', action: (toast) => {vm.$snotify.remove(toast.id);}, bold: true},
+                ],
+            });
         }
     },
     computed: {

@@ -25,6 +25,7 @@ Route::group(['prefix' => 'pet', 'middleware' => 'auth'], function(){
     Route::get('/', [App\Http\Controllers\PetController::class, 'index']);
     Route::post('store', [App\Http\Controllers\PetController::class, 'store']);
     Route::get('show/{cliente_id}', [App\Http\Controllers\PetController::class, 'show']);
+    Route::get('delete/{pet_id}', [App\Http\Controllers\PetController::class, 'delete']);
 });
 
 Route::group(['prefix' => 'especie', 'middleware' => 'auth'], function(){

@@ -53,7 +53,7 @@
 
                             <div class="row form-group">
                                 <div class="col-md-5">
-                                    <b-input-group prepend="EndereÃ§o" class="mt-3">
+                                    <b-input-group prepend="EndereÃÂ§o" class="mt-3">
                                         <b-form-input v-model="cliente.rua" :state="validarRua"></b-form-input>
                                     </b-input-group>
                                     <b-form-invalid-feedback :state="validarRua">
@@ -149,20 +149,20 @@ export default {
                 { value: null, text: 'Selecione o estado', disabled: true},
                 { value: 'AC', text: 'Acre' },
                 { value: 'AL', text: 'Alagoas' },
-                { value: 'AP', text: 'AmapÃ¡' },
+                { value: 'AP', text: 'AmapÃÂ¡' },
                 { value: 'AM', text: 'Amazonas' },
                 { value: 'BA', text: 'Bahia' },
                 { value: 'CE', text: 'Ceara' },
                 { value: 'DF', text: 'Distrito Federal' },
-                { value: 'ES', text: 'EspÃ­rito Santo	' },
-                { value: 'GO', text: 'GoiÃ¡s' },
-                { value: 'MA', text: 'MaranhÃ£o' },
+                { value: 'ES', text: 'EspÃÂ­rito Santo	' },
+                { value: 'GO', text: 'GoiÃÂ¡s' },
+                { value: 'MA', text: 'MaranhÃÂ£o' },
                 { value: 'MT', text: 'Mato Grosso	' },
                 { value: 'MS', text: 'Mato Grosso do Sul	' },
                 { value: 'MG', text: 'Minas Gerais' },
-                { value: 'PA', text: 'ParÃ¡' },
-                { value: 'PB', text: 'ParaÃ­ba' },
-                { value: 'PR', text: 'ParanÃ¡' },
+                { value: 'PA', text: 'ParÃÂ¡' },
+                { value: 'PB', text: 'ParaÃÂ­ba' },
+                { value: 'PR', text: 'ParanÃÂ¡' },
             ],
             formCreateUpdate: false,
         }

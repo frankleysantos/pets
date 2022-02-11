@@ -20,14 +20,25 @@ export default {
         state.servicos = show_servicos;
        },
        NOVO_PET(state, novo_pet){
-        state.pets.push(novo_pet);  
-       },
-       GET_PACIENTE(state, show_paciente){
-        state.paciente = show_paciente;
+        if(novo_pet.update){
+            var count = 0
+            state.pets.map((item) => {
+                if(item.pet_id == novo_pet.pet_id){
+                    console.log(novo_pet );
+                    state.pets[count].nome = novo_pet.nome;
+                    state.pets[count].raca = novo_pet.raca;
+                }
+                count++;
+            });
+            
+        }else{
+            state.pets.push(novo_pet); 
+        }
+         
        },
     
-       DEL_PACIENTE(state, id){
-        let index = state.pets.findIndex(p => p.id == id)
+       DELETE_PET(state, pet_id){
+        let index = state.pets.findIndex(p => p.id == pet_id)
         state.pets.splice(index, 1)
        },
     },
@@ -37,10 +48,6 @@ export default {
             return Axios.post('pet/store', parametros)
                         .then(response => context.commit('NOVO_PET', response.data))
         },
-        // editPaciente(context,id){
-        //     return Axios.get('paciente/edit/'+id)
-        //                 .then(response => context.commit('GET_PACIENTE',response.data));
-        // },
         showPet(context, parametros){
             return Axios.get('pet/show/'+parametros)
                         .then(response=> context.commit('SHOW_PETS', response.data))
@@ -53,14 +60,10 @@ export default {
             return Axios.get('servico/show/')
                         .then(response=> context.commit('SHOW_SERVICOS', response.data))
         },
-        // updatePaciente(context, parametros){
-        //     return Axios.post('/covid-19/public/paciente/update', parametros)
-        //                 .then(response => {})
-        // },
-        // deletePaciente(context,id, state){
-        //     return Axios.get('paciente/delete/'+id)
-        //                 .then(() => context.commit('DEL_PACIENTE', id));
-        // },
+        deletePet(context, pet_id){
+            return Axios.get('pet/delete/'+pet_id)
+                        .then(() => context.commit('DELETE_PET', pet_id));
+        },
     },
 
     getters:{
