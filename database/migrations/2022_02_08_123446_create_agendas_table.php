@@ -19,7 +19,7 @@ class CreateAgendasTable extends Migration
             $table->unsignedInteger('servico_id');
             $table->date('data');
             $table->time('hora');
-            $table->text('observacao');
+            $table->text('observacao')->nullable();
             $table->enum('status', ['cancelado', 'atendido', 'faltante', 'agendado'])->default('agendado');
             $table->timestamps();
             

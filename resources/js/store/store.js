@@ -5,6 +5,8 @@ import cliente from './modules/cliente'
 import pet from './modules/pet'
 import especie from './modules/especie'
 import agenda from './modules/agenda'
+import correio from './modules/correio'
+import raca from './modules/raca'
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
@@ -12,7 +14,9 @@ const store = new Vuex.Store({
         cliente,
         pet,
         especie,
-        agenda
+        agenda,
+        correio,
+        raca
     }
 })
 

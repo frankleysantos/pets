@@ -35,11 +35,11 @@
 
             <div class="row form-group" v-if="mostraRaca">
                 <div class="col-md">
-                    <b-input-group prepend="Racao" class="mt-3">
-                        <b-form-select v-model="pets.raca" :options="options.raca"></b-form-select>
+                    <b-input-group prepend="Raça" class="mt-3">
+                        <b-form-select v-model="pets.raca" :options="options.raca" :state="validarRaca"></b-form-select>
                     </b-input-group>
                     <b-form-invalid-feedback :state="validarRaca">
-                        Selecionar Racao.
+                        Selecionar Raça.
                     </b-form-invalid-feedback>
                     <b-form-input v-model="pets.cliente_id" class="d-none"></b-form-input>
                 </div>
@@ -60,7 +60,7 @@
             <template #cell(pet_id)="row">
                 <b-dropdown variant="primary">
                     <template #button-content>
-                        <b-icon icon="gear-fill" aria-hidden="true"></b-icon> Acoes
+                        <b-icon icon="gear-fill" aria-hidden="true"></b-icon> Ações
                     </template>
                     <b-dropdown-item-button variant="info" @click="agendamentoModal(row.item.pet_id, row.item.nome)">
                         <b-icon icon="calendar2-date-fill" aria-hidden="true"></b-icon>
@@ -104,7 +104,7 @@
                             <b-form-select v-model="agenda.servico_id" :options="options.servicos" :state="validarServico"></b-form-select>
                         </b-input-group>
                         <b-form-invalid-feedback :state="validarServico">
-                            Selecione um tipo de servico
+                            Selecione um tipo de serviço
                         </b-form-invalid-feedback>
                     </div>
                 </div> 
@@ -128,7 +128,7 @@
                         <b-form-textarea
                             id="textarea"
                             v-model="agenda.observacao"
-                            placeholder="Insira alguma Observacao"
+                            placeholder="Insira alguma Observação"
                             rows="3"
                         ></b-form-textarea>
                     </div>
@@ -146,7 +146,56 @@
 
         <!-- modal de ultimos agendamentos do pet -->
         <b-modal ref="my-modal-ultimos-agendamento" hide-footer title="Ultimos agendamentos do Pet" size="lg">
-            <b-table striped hover :items="tableUlitmoAgendamento" :fields="fieldsUlitmoAgendamento">
+            <b-row>
+                <b-col>
+                        <b-form-group
+                        label-for="filter-input"
+                        class="mb-0"
+                        >
+                        <b-input-group size="sm">
+                            <b-form-input
+                            id="filter-input"
+                            v-model="filter"
+                            type="search"
+                            placeholder="Filtrar por nome"
+                            ></b-form-input>
+
+                            <b-input-group-append>
+                            <b-button :disabled="!filter" @click="filter = ''">Limpar</b-button>
+                            </b-input-group-append>
+                        </b-input-group>
+                        </b-form-group>
+                </b-col>
+                <b-col>
+                        <b-form-group
+                        label="Por página"
+                        label-for="per-page-select"
+                        label-cols-md="4"
+                        label-align-sm="right"
+                        label-size="sm"
+                        class="mb-0"
+                        >
+                        <b-form-select
+                            id="per-page-select"
+                            v-model="perPage"
+                            :options="pageOptions"
+                            size="sm"
+                        ></b-form-select>
+                        </b-form-group>
+                </b-col>
+
+                <b-col>
+                        <b-pagination
+                        v-model="currentPage"
+                        :total-rows="totalRows"
+                        :per-page="perPage"
+                        align="fill"
+                        size="sm"
+                        >
+                        </b-pagination>
+                </b-col>
+            </b-row>
+            <b-table striped hover :items="tableUlitmoAgendamento" :fields="fieldsUlitmoAgendamento" :current-page="currentPage" :per-page="perPage" :filter="filter">
                 <template #cell(data)="row">
                     <b class="text-info" v-if="
                         moment(row.item.data).format('DD') == moment().format('DD')
@@ -174,10 +223,13 @@
                 <template #cell(agenda_id)="row">
                     <b-button variant="success" size="sm" @click="alterarStatus(row.item.agenda_id, 'atendido')" title="Confirmar Atendimento"><b-icon icon="check-square"></b-icon></b-button>
                     <b-button variant="danger" size="sm" @click="alterarStatus(row.item.agenda_id, 'cancelado')" title="Cancelar Atendimento"><b-icon icon="x-circle"></b-icon></b-button>
-                    <b-button variant="warning" size="sm" @click="alterarStatus(row.item.agenda_id, 'faltante')" title="NÃÂ£o compareceu"><b-icon icon="exclamation-triangle-fill"></b-icon></b-button>
+                    <b-button variant="warning" size="sm" @click="alterarStatus(row.item.agenda_id, 'faltante')" title="Não compareceu"><b-icon icon="exclamation-triangle-fill"></b-icon></b-button>
                 </template>
 
                 <template #cell(status)="row">
+                    <b class="text-info" v-if="row.item.status == 'agendado'">
+                        {{row.item.status}}
+                    </b>
                     <b class="text-success" v-if="row.item.status == 'atendido'">
                         {{row.item.status}}
                     </b>
@@ -237,12 +289,12 @@ export default {
                     sortable: true
                 },
                 {
-                    label: 'Raca',
+                    label: 'Raça',
                     key: "raca",
                     sortable: true
                 },
                 {
-                    label: 'Acoes',
+                    label: 'Ações',
                     key: 'pet_id'
                 },
             ],
@@ -263,12 +315,12 @@ export default {
                     sortable: true
                 },
                 {
-                    label: 'Servicos',
+                    label: 'Serviços',
                     key: "servico",
                     sortable: true
                 },
                 {
-                    label: 'AÃÂ§ÃÂ£o',
+                    label: 'Ações',
                     key: "agenda_id",
                     sortable: true
                 },
@@ -279,9 +331,13 @@ export default {
                 },
             ],
             tableUlitmoAgendamento: [],
-            
+            filter: null,
+            filterOn: [],
+            totalRows: 0,
+            currentPage: 1,
+            perPage: 5,
+            pageOptions: [5, 25, 50, { value: 100, text: "Mostrar Todos" }],
             pet: [],
-            
             options: {
                 raca: [],
                 especie: [
@@ -386,6 +442,7 @@ export default {
             return this.$store.dispatch('showAgendamentosPet', pet_id)
                 .then(() => {
                     this.tableUlitmoAgendamento = this.$store.state.agenda.agendados;
+                    this.totalRows = this.tableUlitmoAgendamento.length;
                 })
                 .finally(() => {
                     if(this.tableUlitmoAgendamento.length == 0) {
@@ -402,6 +459,9 @@ export default {
             this.$store.dispatch('alterarStatusAgenda', conf)
                     .then(() => {
                         switch (status) {
+                            case 'agendado':
+                                this.$snotify.info('Aguardando atendimento');
+                                break;
                             case 'atendido':
                                 this.$snotify.success('Status alterado para atendido');
                                 break;
@@ -430,7 +490,7 @@ export default {
         },
         deletePet: function(pet_id) {
             var vm = this;
-            vm.$snotify.error('Você irá excluir o pet e os agendamentos vinculados a ele. Deseja continuar?', 'Exclusão do Pet', {
+            vm.$snotify.error('VocÃÂª irÃÂ¡ excluir o pet e os agendamentos vinculados a ele. Deseja continuar?', 'ExclusÃÂ£o do Pet', {
                 timeout: 10000,
                 showProgressBar: true,
                 pauseOnHover: true,
@@ -442,7 +502,7 @@ export default {
                         })
                         vm.$snotify.remove(toast.id)
                     }, bold: true},
-                    {text: 'Não', action: (toast) => {vm.$snotify.remove(toast.id);}, bold: true},
+                    {text: 'NÃÂ£o', action: (toast) => {vm.$snotify.remove(toast.id);}, bold: true},
                 ],
             });
         }

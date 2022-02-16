@@ -16,6 +16,7 @@ Vue.use(Snotify)
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
+// Vue.use(PaginationPlugin);
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -23,6 +24,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import moment from 'moment';
 Vue.prototype.moment = moment
 
+Vue.component('especie-component', require('./components/Especie/EspecieComponent.vue').default);
+Vue.component('raca-component', require('./components/Raca/RacaComponent.vue').default);
 Vue.component('cliente-component', require('./components/Cliente/ClienteComponent.vue').default);
 Vue.component('pet-component', require('./components/Pet/PetComponent.vue').default);
 Vue.component('basenav-component', require('./components/Widgets/Navbar/BaseNavComponent.vue').default);

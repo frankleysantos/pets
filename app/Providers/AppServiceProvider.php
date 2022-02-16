@@ -15,15 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // $this->app->bind(
-        //     PacienteRepositoryInterface::class,
-        //     PacienteRepository::class
-        // );
-
-        // $this->app->bind(
-        //     VacinaRepositoryInterface::class,
-        //     VacinaRepository::class
-        // );
+        
     }
 
     /**

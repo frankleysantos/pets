@@ -8,6 +8,7 @@ class Raca extends Model
 {
 
     protected $table = 'racas';
+    protected $fillable = ['id', 'nome', 'especie_id'];
     public $timestamps = true;
 
 }

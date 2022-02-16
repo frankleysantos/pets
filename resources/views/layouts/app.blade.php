@@ -22,7 +22,7 @@
 <body>
     <div id="app">
         @if(Auth::user())
-          <basenav-component></basenav-component>
+          <basenav-component :username="{{Auth::user()}}"></basenav-component>
         @endif
           <div class="container">
             <main class="py-4">

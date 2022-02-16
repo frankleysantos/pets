@@ -53,7 +53,7 @@
 
                             <div class="row form-group">
                                 <div class="col-md-5">
-                                    <b-input-group prepend="EndereÃÂ§o" class="mt-3">
+                                    <b-input-group prepend="Endereço" class="mt-3">
                                         <b-form-input v-model="cliente.rua" :state="validarRua"></b-form-input>
                                     </b-input-group>
                                     <b-form-invalid-feedback :state="validarRua">
@@ -89,7 +89,8 @@
                                 </div>
                                 <div class="col-md">
                                     <b-input-group prepend="CEP" class="mt-3">
-                                        <b-form-input v-model="cliente.cep" :state="validarCep" v-mask="'##.###-###'"></b-form-input>
+                                        <b-form-input v-model="cliente.cep" :state="validarCep" v-mask="'#####-###'"></b-form-input>
+                                        
                                     </b-input-group>
                                     <b-form-invalid-feedback :state="validarCep">
                                         Insira o CEP
@@ -123,11 +124,10 @@
     </div>
 </template>
 <script>
-import AgendaComponent from '../Agenda/AgendaComponent.vue';
 
 
 export default {
-  components: { AgendaComponent },
+
     created() {
         this.resetCliente
     },
@@ -149,20 +149,20 @@ export default {
                 { value: null, text: 'Selecione o estado', disabled: true},
                 { value: 'AC', text: 'Acre' },
                 { value: 'AL', text: 'Alagoas' },
-                { value: 'AP', text: 'AmapÃÂ¡' },
+                { value: 'AP', text: 'Amapá' },
                 { value: 'AM', text: 'Amazonas' },
                 { value: 'BA', text: 'Bahia' },
                 { value: 'CE', text: 'Ceara' },
                 { value: 'DF', text: 'Distrito Federal' },
-                { value: 'ES', text: 'EspÃÂ­rito Santo	' },
-                { value: 'GO', text: 'GoiÃÂ¡s' },
-                { value: 'MA', text: 'MaranhÃÂ£o' },
+                { value: 'ES', text: 'Espirito Santo	' },
+                { value: 'GO', text: 'Goias' },
+                { value: 'MA', text: 'Maranhão' },
                 { value: 'MT', text: 'Mato Grosso	' },
                 { value: 'MS', text: 'Mato Grosso do Sul	' },
                 { value: 'MG', text: 'Minas Gerais' },
-                { value: 'PA', text: 'ParÃÂ¡' },
-                { value: 'PB', text: 'ParaÃÂ­ba' },
-                { value: 'PR', text: 'ParanÃÂ¡' },
+                { value: 'PA', text: 'Pará' },
+                { value: 'PB', text: 'Paraíba' },
+                { value: 'PR', text: 'Paraná' },
             ],
             formCreateUpdate: false,
         }
@@ -226,7 +226,7 @@ export default {
       },
       validarRua() {
           if(this.cliente.rua != null)
-            return this.cliente.rua.length >= 4
+            return this.cliente.rua.length > 3
           return false;
       },
       validarCidade() {
@@ -247,8 +247,9 @@ export default {
           return false;
       },
       validarCep() {
-          if(this.cliente.cep != undefined)
-           return this.cliente.cep.length >= 8;
+          if (this.cliente.cep != undefined && this.cliente.cep.length >= 9 ) {
+              return true;
+          }
           return false;
       },
       resetCliente() {

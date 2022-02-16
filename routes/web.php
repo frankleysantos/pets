@@ -37,7 +37,7 @@ Route::group(['prefix' => 'especie', 'middleware' => 'auth'], function(){
 Route::group(['prefix' => 'raca', 'middleware' => 'auth'], function(){
     Route::get('/', [App\Http\Controllers\RacaController::class, 'index']);
     Route::post('store', [App\Http\Controllers\RacaController::class, 'store']);
-    Route::get('show/{raca_id}', [App\Http\Controllers\RacaController::class, 'show']);
+    Route::get('show/{especie_id?}', [App\Http\Controllers\RacaController::class, 'show']);
 });
 
 Route::group(['prefix' => 'agenda', 'middleware' => 'auth'], function(){

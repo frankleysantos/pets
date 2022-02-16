@@ -17,9 +17,9 @@ class RacasTableSeeder extends Seeder
         
 
         \DB::table('racas')->delete();
-        
-        \DB::table('racas')->insert(array (
-            0 => 
+
+        $racas = [
+            //cachorros
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -27,7 +27,7 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Akita',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            1 => 
+
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -35,7 +35,7 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Basset hound',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            2 => 
+
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -43,7 +43,7 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Beagle',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            3 => 
+
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -51,7 +51,7 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Bichon frisé',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            4 => 
+
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -59,7 +59,7 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Boiadeiro australiano',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            5 => 
+
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -67,7 +67,7 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Border collie',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            6 => 
+
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -75,7 +75,7 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Boston terrier',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            7 => 
+
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -83,7 +83,7 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Boxer',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            8 => 
+
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -91,7 +91,7 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Buldogue francês',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            9 => 
+
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -99,7 +99,7 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Buldogue inglês',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            10 => 
+
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -107,7 +107,7 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Bull terrier',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            11 => 
+
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -115,7 +115,7 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Cane corso',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            12 => 
+
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -123,7 +123,7 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Cavalier king charles spaniel',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            13 => 
+
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -131,7 +131,7 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Chihuahua',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            14 => 
+
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -139,7 +139,7 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Chow chow',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            15 => 
+
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -147,7 +147,7 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Cocker spaniel inglês	',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            16 => 
+
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -163,7 +163,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Dálmata	',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            18 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -171,7 +170,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Doberman',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            19 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -179,7 +177,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Dogo argentino	',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            20 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -195,7 +192,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Fila brasileiro	',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            22 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -211,7 +207,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Husky siberiano	',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            24 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -227,7 +222,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Labrador retriever	',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            26 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -243,7 +237,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Lulu da pomerânia	',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            28 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -259,7 +252,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Mastiff inglês	',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            30 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -267,7 +259,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Mastim tibetano	',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            31 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -275,7 +266,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Pastor alemão	',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            32 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -283,7 +273,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Pastor australiano	',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            33 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -291,7 +280,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Pastor de Shetland	',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            34 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -299,7 +287,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Pequinês	',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            35 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -307,7 +294,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Pinscher',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            36 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -315,7 +301,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Pit bull	',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            37 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -323,7 +308,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Poodle	',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            38 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -331,7 +315,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Pug',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            39 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -339,7 +322,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Rottweiler',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            40 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -347,7 +329,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Schnauzer',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            41 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -355,7 +336,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Shar-pei	',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            42 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -363,7 +343,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Shiba',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            43 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -371,7 +350,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Shih tzu	',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            44 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -379,7 +357,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Staffordshire bull terrier	',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            45 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -387,7 +364,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Weimaraner',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            46 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -395,7 +371,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Yorkshire',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            47 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 1,
@@ -403,7 +378,7 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Vira-lata',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            48 => 
+            //gatos
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 2,
@@ -411,7 +386,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Persa',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            49 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 2,
@@ -419,7 +393,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'British Shorthair',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            50 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 2,
@@ -427,7 +400,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Sphynx',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            51 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 2,
@@ -435,7 +407,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Siamês',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            52 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 2,
@@ -443,7 +414,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Angorá',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            53 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 2,
@@ -451,7 +421,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Maine Coon',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            54 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 2,
@@ -459,7 +428,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Himalaio',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            55 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 2,
@@ -467,7 +435,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Ragdoll',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            56 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 2,
@@ -475,7 +442,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Munchkin',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            57 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 2,
@@ -483,7 +449,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Scottish Fold',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            58 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 2,
@@ -491,7 +456,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Abissínio',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            59 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 2,
@@ -499,7 +463,6 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Birmanês',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-            60 => 
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 2,
@@ -507,8 +470,184 @@ class RacasTableSeeder extends Seeder
                 'nome' => 'Persa',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
-        ));
-        
-        
+            //cavalos
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 3,
+                'nome' => 'Árabe',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 3,
+                'nome' => 'Puro Sangue Inglês',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 3,
+                'nome' => 'Lusitano',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 3,
+                'nome' => 'Andaluz',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 3,
+                'nome' => 'Percheron',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 3,
+                'nome' => 'Quarto de Milha',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 3,
+                'nome' => 'Appaloosa',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            //coelho
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 4,
+                'nome' => 'Angorá',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 4,
+                'nome' => 'Coelho leão',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 4,
+                'nome' => 'Mini lop',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 4,
+                'nome' => 'Fuzzy Lop',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 4,
+                'nome' => 'Holland Lop',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 4,
+                'nome' => 'Nova Zelândia',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 4,
+                'nome' => 'Teddy',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            //Roedores
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 5,
+                'nome' => 'Porquinho-da-índia',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 5,
+                'nome' => 'Gerbil',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 5,
+                'nome' => 'Twister',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 5,
+                'nome' => 'Chinchila',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 5,
+                'nome' => 'Hamster',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 5,
+                'nome' => 'Hamster-sírio',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 5,
+                'nome' => 'Hamster anão-russo',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            //Peixes
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 6,
+                'nome' => 'Colisa',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 6,
+                'nome' => 'Tetra neon',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 6,
+                'nome' => 'Coridora',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 6,
+                'nome' => 'Kinguio',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 6,
+                'nome' => 'Molinésia',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 6,
+                'nome' => ' Peixe arco-íris',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+            array (
+                'created_at' => '2022-02-07 15:36:53',
+                'especie_id' => 6,
+                'nome' => 'Mato grosso',
+                'updated_at' => '2022-02-07 15:36:53',
+            ),
+
+        ];
+
+        foreach ($racas as $raca) {
+            \DB::table('racas')->insert($raca);
+        }
+        // \DB::table('racas')->insert(
     }
 }
