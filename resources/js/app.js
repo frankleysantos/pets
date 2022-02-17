@@ -24,6 +24,15 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import moment from 'moment';
 Vue.prototype.moment = moment
 
+
+import VueQuillEditor from 'vue-quill-editor'
+
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+
+Vue.use(VueQuillEditor, /* { default global options } */)
+
 Vue.component('especie-component', require('./components/Especie/EspecieComponent.vue').default);
 Vue.component('raca-component', require('./components/Raca/RacaComponent.vue').default);
 Vue.component('cliente-component', require('./components/Cliente/ClienteComponent.vue').default);

@@ -1,66 +1,84 @@
 <template lang="">
     <div>
-        <b-card bg-variant="light">
-            <b-form-group
-                label="Street:"
-                label-for="nested-street"
-                label-cols-sm="1"
-                label-align-sm="right"
-            >
-                <b-form-input id="nested-street"></b-form-input>
-            </b-form-group>
+        <b-form @submit.prevent="prontuarioCreate">
+        <b-row class="form-group">
+            <b-col>
+                <b-card bg-variant="light">
+                     <b-form-select v-model="selected.vacina" :options="options.vacina"></b-form-select>
+                     <button @click="addVacina">Add</button>
+                </b-card>
+            </b-col>
+        </b-row>
 
-            <b-form-group
-                label="City:"
-                label-for="nested-city"
-                label-cols-sm="1"
-                label-align-sm="right"
-            >
-                <b-form-input id="nested-city"></b-form-input>
-            </b-form-group>
+        <b-row class="form-group">
+            <b-col>
+                <!-- Or manually control the data synchronization -->
+                <quill-editor
+                    :content="content"
+                    :options="editorOption"
+                    @change="onEditorChange($event)"
+                ></quill-editor>
+            </b-col>
+        </b-row>
 
-            <b-form-group
-                label="State:"
-                label-for="nested-state"
-                label-cols-sm="1"
-                label-align-sm="right"
-            >
-                <b-form-input id="nested-state"></b-form-input>
-            </b-form-group>
-
-            <b-form-group
-                label="Country:"
-                label-for="nested-country"
-                label-cols-sm="1"
-                label-align-sm="right"
-            >
-                <b-form-input id="nested-country"></b-form-input>
-            </b-form-group>
-
-            <b-form-group
-                label="Ship via:"
-                label-cols-sm="1"
-                label-align-sm="right"
-                class="mb-0"
-                v-slot="{ ariaDescribedby }"
-            >
-                <b-form-textarea
-                    id="textarea"
-                    v-model="text"
-                    placeholder="Enter something..."
-                    rows="3"
-                    max-rows="10"
-                    >
-                </b-form-textarea>
-            </b-form-group>
-        </b-card>
+        <b-row class="form-group save">
+            <b-col class="d-flex justify-content-end">
+                <b-button variant="outline-success" type="submit">Salvar</b-button>
+            </b-col>
+        </b-row>
+        
+        </b-form>
     </div>
 </template>
 <script>
+
 export default {
+    data () {
+      return {
+        prontuario: {
+            vacina: [],
+            text: null,
+            html: null
+        },     
+        content: null,
+        editorOption: {
+          // Some Quill options...
+        },
+        selected: {
+            vacina: null
+        },
+        options: {
+          vacina: [
+                { value: null, text: 'Please select an option' },
+                { value: 'a', text: 'This is First option' },
+                { value: 'b', text: 'Selected Option' },
+          ]
+        }
+      }
+    },
+    methods: {
+      onEditorChange({ quill, html, text }) {
+        this.prontuario.text = text
+        this.prontuario.html = html
+      },
+      prontuarioCreate: function() {
+          console.log(this._data.prontuario);
+      },
+      addVacina: function() {
+          this.prontuario.vacina.push(this.selected.vacina)
+          console.log(this.prontuario.vacina)
+      }
+    },
+
     props: ['pet_id']
 }
 </script>
-<style lang="">
-    
+<style lang="scss" scoped>
+    .quill-editor {
+      height: 200px;
+      overflow-y: auto;
+    }
+    .save {
+        padding-top: 70px;
+    }
 </style>
