@@ -54,7 +54,31 @@
                 </b-pagination>
         </b-col>
       </b-row>
-      <b-table striped hover :items="agendados" :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter"></b-table>
+      <b-table striped hover :items="agendados" :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter">
+        <template #cell(status)="row">
+               <div v-if="row.item.status == 'agendado'">
+                 <div v-if="
+                        moment(row.item.data).format('DD') == moment().format('DD')
+                        && moment(row.item.data).format('MM') == moment().format('MM')
+                        && moment(row.item.data).format('YYYY') == moment().format('YYYY')
+                ">
+
+                  <b-link variant="outline-info" size="sm" :href="'/pets/public/historico/show/'+row.item.pet_id">Atender</b-link>
+                </div>
+                <div v-else>Ajuste [Cancelar / Faltante]</div>
+                 
+               </div>
+               <div v-else-if="row.item.status == 'cancelado'">
+                 <b-badge show variant="danger" s>Cancelado</b-badge>
+               </div>
+               <div v-else-if="row.item.status == 'faltante'">
+                 <b-badge show variant="warning">faltante</b-badge>
+               </div>
+               <div v-else-if="row.item.status == 'atendido'">
+                 <b-badge show variant="success">atendido</b-badge>
+               </div>
+        </template>
+      </b-table>
     </b-col>
   </b-row>
 </div>
@@ -63,7 +87,7 @@
 <script>
 import moment from 'moment';
   export default {
-    
+    components: { moment },
     data() {
       return {
         data: '',
@@ -95,6 +119,10 @@ import moment from 'moment';
                 key: "observacao",
                 sortable: true
             },
+            {
+              label: 'Status',
+              key: 'status',
+            }
         ],
       }
     },

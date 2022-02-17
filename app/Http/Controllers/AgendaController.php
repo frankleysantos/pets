@@ -13,7 +13,7 @@ class AgendaController extends Controller
                             ->join('pets as p', 'ag.pet_id', 'p.id')
                             ->join('servicos as serv', 'ag.servico_id', 'serv.id')
                             ->where('data', $data)
-                            ->select('p.nome as pet', 'serv.nome as servico', 'ag.hora as hora', 'ag.observacao as observacao')
+                            ->select('p.nome as pet', 'serv.nome as servico', 'ag.hora as hora', 'ag.observacao as observacao', 'ag.status as status', 'ag.data as data', 'ag.pet_id as pet_id')
                             ->orderBy('ag.hora', 'ASC')
                             ->get();
         return response()->json($agendados);

@@ -31,6 +31,8 @@ Vue.component('pet-component', require('./components/Pet/PetComponent.vue').defa
 Vue.component('basenav-component', require('./components/Widgets/Navbar/BaseNavComponent.vue').default);
 Vue.component('sidebar-component', require('./components/Widgets/SideBar/SideBarComponent.vue').default);
 Vue.component('agenda-component', require('./components/Agenda/AgendaComponent.vue').default);
+Vue.component('pet-historico-component', require('./components/Pet/Historico/HistoricoComponent.vue').default);
+Vue.component('pet-prontuario-component', require('./components/Pet/Prontuario/ProntuarioComponent.vue').default);
 
 const app = new Vue({
     store,

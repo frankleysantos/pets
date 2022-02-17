@@ -410,13 +410,6 @@ class RacasTableSeeder extends Seeder
             array (
                 'created_at' => '2022-02-07 15:36:53',
                 'especie_id' => 2,
-                'id' => 53,
-                'nome' => 'Angorá',
-                'updated_at' => '2022-02-07 15:36:53',
-            ),
-            array (
-                'created_at' => '2022-02-07 15:36:53',
-                'especie_id' => 2,
                 'id' => 54,
                 'nome' => 'Maine Coon',
                 'updated_at' => '2022-02-07 15:36:53',
@@ -461,13 +454,6 @@ class RacasTableSeeder extends Seeder
                 'especie_id' => 2,
                 'id' => 60,
                 'nome' => 'Birmanês',
-                'updated_at' => '2022-02-07 15:36:53',
-            ),
-            array (
-                'created_at' => '2022-02-07 15:36:53',
-                'especie_id' => 2,
-                'id' => 61,
-                'nome' => 'Persa',
                 'updated_at' => '2022-02-07 15:36:53',
             ),
             //cavalos

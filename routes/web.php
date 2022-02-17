@@ -51,6 +51,16 @@ Route::group(['prefix' => 'servico', 'middleware' => 'auth'], function(){
     Route::get('show', [App\Http\Controllers\ServicoController::class, 'show']);
 });
 
+Route::group(['prefix' => 'historico', 'middleware' => 'auth'], function(){
+    Route::get('show/{pet_id}', [App\Http\Controllers\HistoricoController::class, 'show']);
+});
+
+Route::group(['prefix' => 'prontuario', 'middleware' => 'auth'], function(){
+    Route::get('index/{pet_id}', [App\Http\Controllers\ProntuarioController::class, 'index']);
+});
+
+
+
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

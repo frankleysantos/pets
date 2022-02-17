@@ -20,7 +20,7 @@ class CreateAgendasTable extends Migration
             $table->date('data');
             $table->time('hora');
             $table->text('observacao')->nullable();
-            $table->enum('status', ['cancelado', 'atendido', 'faltante', 'agendado'])->default('agendado');
+            $table->enum('status', ['agendado', 'em_atendimento', 'atendido', 'faltante', 'cancelado'])->default('agendado');
             $table->timestamps();
             
             $table->foreign('pet_id', 'agendas_pet_id_foreign')->references('id')->on('pets')->onDelete('cascade');

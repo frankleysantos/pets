@@ -20,7 +20,7 @@ class PetTableSeeder extends Seeder
             ->insert([
                 'raca_id' => rand(1, 6),
                 'cliente_id' => 1,
-                'nome' => $faker->firstName
+                'nome' => $faker->firstName.'-'.$i
             ]);
         }
         

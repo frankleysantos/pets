@@ -16,7 +16,7 @@ class CreateRacasTable extends Migration
         Schema::create('racas', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('especie_id');
-            $table->string('nome', 255);
+            $table->string('nome', 255)->unique();
             $table->timestamps();
             
             $table->foreign('especie_id', 'racas_especie_id_foreign')->references('id')->on('especies')->onDelete('cascade');

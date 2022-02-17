@@ -6,7 +6,7 @@
 
                     <b-dropdown-item-button @click="direcionarRota('home')">
                         <!-- <b-icon icon="house-fill" aria-hidden="true"></b-icon> -->
-                        <b-card-img src="assets/img/petshop.png" style="width: 9%"></b-card-img>
+                        <b-card-img :src="'/pets/public/assets/img/petshop.png'" style="width: 9%"></b-card-img>
                         Home
                     </b-dropdown-item-button>
                     <b-dropdown-divider></b-dropdown-divider>
@@ -19,14 +19,14 @@
 
                     <b-dropdown-item-button @click="direcionarRota('especie')">
                         <!-- <b-icon icon="person-bounding-box" aria-hidden="true"></b-icon> -->
-                        <b-card-img src="assets/img/pets.png" style="width: 9%"></b-card-img> 
+                        <b-card-img :src="'/pets/public/assets/img/pets.png'" style="width: 9%"></b-card-img> 
                         Especie
                     </b-dropdown-item-button>
                     <b-dropdown-divider></b-dropdown-divider>
 
                     <b-dropdown-item-button @click="direcionarRota('raca')">
                         <!-- <b-icon icon="person-bounding-box" aria-hidden="true"></b-icon> -->
-                        <b-card-img src="assets/img/raca.png" style="width: 10%"></b-card-img> 
+                        <b-card-img :src="'/pets/public/assets/img/raca.png'" style="width: 10%"></b-card-img> 
                         Raca
                     </b-dropdown-item-button>
                     <b-dropdown-divider></b-dropdown-divider>
