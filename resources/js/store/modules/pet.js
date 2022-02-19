@@ -52,6 +52,12 @@ export default {
             return Axios.get('pet/show/'+parametros)
                         .then(response=> context.commit('SHOW_PETS', response.data))
         },
+
+        petInfo(context, parametros){
+            return Axios.get('/pets/public/pet/info/'+parametros)
+                        .then(response=> context.commit('SHOW_PETS', response.data))
+        },
+
         showRaca(context, parametros){
             return Axios.get('raca/show/'+parametros)
                         .then(response=> context.commit('SHOW_RACAS', response.data))

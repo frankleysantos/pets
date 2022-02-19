@@ -25,6 +25,8 @@ Route::group(['prefix' => 'pet', 'middleware' => 'auth'], function(){
     Route::get('/', [App\Http\Controllers\PetController::class, 'index']);
     Route::post('store', [App\Http\Controllers\PetController::class, 'store']);
     Route::get('show/{cliente_id}', [App\Http\Controllers\PetController::class, 'show']);
+    Route::get('info/{pet_id}', [App\Http\Controllers\PetController::class, 'petInfo']);
+    
     Route::get('delete/{pet_id}', [App\Http\Controllers\PetController::class, 'delete']);
 });
 
@@ -52,11 +54,16 @@ Route::group(['prefix' => 'servico', 'middleware' => 'auth'], function(){
 });
 
 Route::group(['prefix' => 'historico', 'middleware' => 'auth'], function(){
-    Route::get('show/{pet_id}', [App\Http\Controllers\HistoricoController::class, 'show']);
+    Route::get('show/{pet_id}/{agenda_id}', [App\Http\Controllers\HistoricoController::class, 'show']);
 });
 
 Route::group(['prefix' => 'prontuario', 'middleware' => 'auth'], function(){
-    Route::get('index/{pet_id}', [App\Http\Controllers\ProntuarioController::class, 'index']);
+    Route::get('index/{pet_id}/{agenda_id}', [App\Http\Controllers\ProntuarioController::class, 'index']);
+    Route::post('store', [App\Http\Controllers\ProntuarioController::class, 'store']);
+});
+
+Route::group(['prefix' => 'insumo', 'middleware' => 'auth'], function(){
+    Route::get('show', [App\Http\Controllers\InsumoController::class, 'show']);
 });
 
 

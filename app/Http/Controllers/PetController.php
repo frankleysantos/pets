@@ -47,6 +47,20 @@ class PetController extends Controller
         return response()->json($pets);
     }
 
+    public function petInfo($pet_id) 
+    {
+        $pets = Pet::join('racas as r', 'r.id', 'pets.raca_id')
+                    ->join('clientes as c', 'c.id', 'pets.cliente_id')
+                    ->where('pets.id', $pet_id)
+                    ->select('r.nome as raca', 'pets.nome as nome', 'pets.id as pet_id', 
+                            'r.id as raca_id', 'r.especie_id as especie_id',
+                            'c.nome as cliente'
+                            )
+                    ->first();
+
+        return response()->json($pets);
+    }
+
     public function delete($pet_id) 
     {
         $removido = Pet::where('id', $pet_id)->delete();

@@ -39,7 +39,7 @@
 export default {
     methods: {
         direcionarRota(url) {
-            window.location = url;
+            window.location = '/pets/public/'+url;
         }
     },
 }

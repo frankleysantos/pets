@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models\Chat\Message;
+
 
 class User extends Authenticatable
 {
@@ -43,8 +43,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function messages(){
+    public function perfil(){
         // 1 para muitos
-        return $this->hasMany(Message::class);
+        return $this->hasOne(PerfilUsuario::class);
     }
 }

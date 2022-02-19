@@ -1,5 +1,6 @@
 <template>
 <div>
+  {{perfil.perfil}}
   <b-row>
     <b-col md="auto">
       <b-calendar v-model="data" locale="pt-BR" @context="agendaData"></b-calendar>
@@ -62,8 +63,9 @@
                         && moment(row.item.data).format('MM') == moment().format('MM')
                         && moment(row.item.data).format('YYYY') == moment().format('YYYY')
                 ">
-
-                  <b-link variant="outline-info" size="sm" :href="'/pets/public/historico/show/'+row.item.pet_id">Atender</b-link>
+                <div v-if="perfil.perfil === 'veterinario' && perfil.status === 'ativado' && row.item.executado_por === 'veterinario'">
+                  <b-link variant="outline-info" size="sm" :href="'/pets/public/historico/show/'+row.item.pet_id+'/'+row.item.agenda_id">Atender</b-link>
+                </div>
                 </div>
                 <div v-else>Ajuste [Cancelar / Faltante]</div>
                  
@@ -87,9 +89,13 @@
 <script>
 import moment from 'moment';
   export default {
+    created() {
+      this.perfil = this.user_id.perfil
+    },
     components: { moment },
     data() {
       return {
+        perfil: [],
         data: '',
         agendados: [],
         filter: null,
@@ -135,9 +141,11 @@ import moment from 'moment';
           return this.$store.dispatch('showAgenda', this.data)
                       .then((e) => {
                         this.agendados = this.$store.state.agenda.agendados;
+                        // console.log(this.agendados);
                         this.totalRows = this.agendados.length;
                       })
         }
-    }
+    },
+    props: ['user_id']
   }
 </script>

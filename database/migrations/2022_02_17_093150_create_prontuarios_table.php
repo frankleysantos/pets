@@ -18,14 +18,14 @@ class CreateProntuariosTable extends Migration
             $table->unsignedInteger('pet_id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('agenda_id');
-            $table->unsignedInteger('insumo_id')->nullable();
-            $table->unsignedInteger('descricao')->nullable();
+            $table->text('descricao')->nullable();
+            $table->text('html')->nullable();
             $table->timestamps();
 
             $table->foreign('pet_id', 'prontuario_pet_id_foreign')->references('id')->on('pets')->onDelete('cascade');
             $table->foreign('user_id', 'prontuario_user_id_foreign')->references('id')->on('users');
             $table->foreign('agenda_id', 'prontuario_agenda_id_foreign')->references('id')->on('agendas');
-            $table->foreign('insumo_id', 'prontuario_insumo_id_foreign')->references('id')->on('insumos');
+
         });
     }
 

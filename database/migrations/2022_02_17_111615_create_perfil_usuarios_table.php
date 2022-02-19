@@ -16,7 +16,7 @@ class CreatePerfilUsuariosTable extends Migration
         Schema::create('perfil_usuarios', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->enum('perfil', ['veterinario', 'atendente', 'assistente']);
+            $table->enum('perfil', ['veterinario', 'atendente', 'assistente'])->default('atendente');
             $table->enum('status', ['ativado', 'desativado'])->default('desativado');
             $table->timestamps();
 

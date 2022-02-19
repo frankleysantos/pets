@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Auth;
 
 class AgendaController extends Controller
 {
@@ -13,7 +14,10 @@ class AgendaController extends Controller
                             ->join('pets as p', 'ag.pet_id', 'p.id')
                             ->join('servicos as serv', 'ag.servico_id', 'serv.id')
                             ->where('data', $data)
-                            ->select('p.nome as pet', 'serv.nome as servico', 'ag.hora as hora', 'ag.observacao as observacao', 'ag.status as status', 'ag.data as data', 'ag.pet_id as pet_id')
+                            ->select('p.nome as pet', 'serv.nome as servico', 'ag.hora as hora', 'ag.observacao as observacao', 
+                                    'ag.status as status', 'ag.data as data', 'ag.pet_id as pet_id', 
+                                    'ag.id as agenda_id',   'serv.executado_por as executado_por'
+                            )
                             ->orderBy('ag.hora', 'ASC')
                             ->get();
         return response()->json($agendados);

@@ -31,6 +31,11 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 
+import Select2 from 'v-select2-component';
+
+Vue.component('Select2', Select2);
+
+
 Vue.use(VueQuillEditor, /* { default global options } */)
 
 Vue.component('especie-component', require('./components/Especie/EspecieComponent.vue').default);

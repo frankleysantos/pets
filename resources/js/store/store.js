@@ -7,6 +7,8 @@ import especie from './modules/especie'
 import agenda from './modules/agenda'
 import correio from './modules/correio'
 import raca from './modules/raca'
+import prontuario from './modules/prontuario'
+import insumo from './modules/insumo'
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
@@ -16,7 +18,9 @@ const store = new Vuex.Store({
         especie,
         agenda,
         correio,
-        raca
+        raca,
+        prontuario,
+        insumo
     }
 })
 
