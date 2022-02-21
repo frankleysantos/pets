@@ -47,6 +47,10 @@ class ProntuarioController extends Controller
                     'insumo_id' => $item,
                 ]);
             }
+
+            DB::table('agendas')->where('id', $request->agenda_id)->update([
+                'status' => 'atendido',
+            ]);
         }
 
         $dados = [

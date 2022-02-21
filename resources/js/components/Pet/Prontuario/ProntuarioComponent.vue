@@ -22,7 +22,7 @@
             </figcaption>
         </figure>
 
-        <b-form @submit.prevent="prontuarioCreate">
+        <b-form @submit.prevent="notificacao">
         <b-row class="form-group">
             <b-col>
                 <b-card bg-variant="light">
@@ -255,7 +255,26 @@ export default {
                         this.totalRows = this.historico.length;
                         this.$refs['bv-modal-prontuario-historico'].show();
                     })
-      }
+      },
+      notificacao: function () {
+          var vm = this;
+          vm.$snotify.warning('Ao clicar em sim irá finalizar o atendimento. Deseja pŕosseguir?', 'Finalizar', {
+            timeout: 5000,
+            showProgressBar: true,
+            closeOnClick: false,
+            pauseOnHover: true,
+            centerBottom:"centerBottom",
+            buttons: [
+                {text: 'Yes', action: (toast) => {
+                    vm.prontuarioCreate();
+                    vm.$snotify.remove(toast.id);
+                    window.location.href ='/pets/public/home'
+                }, bold: false},
+                {text: 'Não', action: (toast) => {console.log('Clicked: No'); vm.$snotify.remove(toast.id); }, bold: true},
+            ]
+          });
+                
+      },
     },
 
     props: ['pet_id', 'agenda_id']
