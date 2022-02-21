@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Raca;
+use App\Models\User;
 use Illuminate\Http\Request;
 use DB;
-
+use Auth;
 class RacaController extends Controller
 {
     public function index() 
     {
+        $user = (new User)->perfil(Auth::user()->id);
+        if($user->perfil === 'veterinario'){
+            return view('errors.401');
+        }
+
         return view('raca.index');
     }
 

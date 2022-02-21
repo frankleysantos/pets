@@ -4,11 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Especie;
 use Illuminate\Http\Request;
-
+use App\Models\User;
+use Auth;
 class EspecieController extends Controller
 {
     public function index()
     {
+        $user = (new User)->perfil(Auth::user()->id);
+        if($user->perfil === 'veterinario'){
+            return view('errors.401');
+        }
+
         return view('especie.index');
     }
     public function show()
