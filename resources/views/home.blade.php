@@ -12,7 +12,7 @@
                           <a href="{{url('cliente')}}" class="btn btn-success">Novo Atendimento</a>
                         </div>
                     </div>
-                    <agenda-component :user_id="{{Auth::user()->with('perfil')->first()}}"></agenda-component>
+                    <agenda-component :perfil="'{{perfil(Auth::user()->id)->perfil}}'" :status="'{{perfil(Auth::user()->id)->status}}'"></agenda-component>
                 </div>
             </div>
         </div>

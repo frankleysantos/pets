@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
 
 class AgendaController extends Controller
 {
+
     public function show($data) 
     {
+        $user = (new User)->perfil(Auth::user()->id);
+
         $agendados = DB::table('agendas as ag')
                             ->join('pets as p', 'ag.pet_id', 'p.id')
                             ->join('servicos as serv', 'ag.servico_id', 'serv.id')
@@ -18,8 +22,13 @@ class AgendaController extends Controller
                                     'ag.status as status', 'ag.data as data', 'ag.pet_id as pet_id', 
                                     'ag.id as agenda_id',   'serv.executado_por as executado_por'
                             )
-                            ->orderBy('ag.hora', 'ASC')
-                            ->get();
+                            ->orderBy('ag.hora', 'ASC');
+        if ($user->perfil === 'veterinario') {
+            $agendados->where('serv.executado_por', '=', $user->perfil);
+        }
+        
+        $agendados = $agendados->get();
+        
         return response()->json($agendados);
     }
 

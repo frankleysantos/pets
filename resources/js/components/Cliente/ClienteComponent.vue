@@ -127,9 +127,8 @@
 
 
 export default {
-
     created() {
-        this.resetCliente
+        this.resetCliente;
     },
     data() {
         return {

@@ -15,13 +15,13 @@ class AgendaTableSeeder extends Seeder
     {
         $faker = \Faker\Factory::create('pt_BR');
     
-        for ($i=0; $i < 20; $i++) { 
+        for ($i=0; $i < 50; $i++) { 
             $horas = $this->create_time_range('15:30', '18:30', '30 mins', '24');
             \DB::table('agendas')
                 ->insert([
                     'pet_id' => rand(1, 4),
                     'servico_id' => rand(1, 6),
-                    'data' => $faker->dateTimeInInterval('-2 days', '+2 days'),
+                    'data' => $faker->dateTimeInInterval('-3 days', '+5 days'),
                     'hora' => $horas
                 ]);
         }

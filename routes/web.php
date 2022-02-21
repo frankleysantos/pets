@@ -67,6 +67,11 @@ Route::group(['prefix' => 'insumo', 'middleware' => 'auth'], function(){
 });
 
 
+Route::group(['prefix' => 'errors'], function(){
+    Route::get('{error_id}', [App\Http\Controllers\ErrorController::class, 'erro'])->name('error');
+});
+
+
 
 
 Auth::routes();
