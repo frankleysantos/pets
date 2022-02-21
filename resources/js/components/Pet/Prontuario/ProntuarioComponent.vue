@@ -11,7 +11,7 @@
                     <small class="text-muted">
                         <strong>Nascimento</strong>: 12/04/2021
                     </small> 
-                    <button align="right">Ultimas Visitas</button>
+                      <b-button id="show-btn" @click="consultaProntuarioHistorico">Historicos</b-button>
                 </p>
             </blockquote>
             <figcaption class="blockquote-footer">
@@ -57,6 +57,70 @@
         </b-row>
         
         </b-form>
+
+
+        <b-modal ref="bv-modal-prontuario-historico" hide-footer size="xl">
+             <b-row>
+                <b-col>
+                        <b-form-group
+                        label-for="filter-input"
+                        class="mb-0"
+                        >
+                        <b-input-group size="sm">
+                            <b-form-input
+                            id="filter-input"
+                            v-model="filter"
+                            type="search"
+                            placeholder="Filtrar por nome"
+                            ></b-form-input>
+
+                            <b-input-group-append>
+                            <b-button :disabled="!filter" @click="filter = ''">Limpar</b-button>
+                            </b-input-group-append>
+                        </b-input-group>
+                        </b-form-group>
+                </b-col>
+                <b-col>
+                        <b-form-group
+                        label="Por página"
+                        label-for="per-page-select"
+                        label-cols-md="4"
+                        label-align-sm="right"
+                        label-size="sm"
+                        class="mb-0"
+                        >
+                        <b-form-select
+                            id="per-page-select"
+                            v-model="perPage"
+                            :options="pageOptions"
+                            size="sm"
+                        ></b-form-select>
+                        </b-form-group>
+                </b-col>
+
+                <b-col>
+                        <b-pagination
+                        v-model="currentPage"
+                        :total-rows="totalRows"
+                        :per-page="perPage"
+                        align="fill"
+                        size="sm"
+                        >
+                        </b-pagination>
+                </b-col>
+            </b-row>
+            <b-table striped hover :items="historico" :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter">
+                <template #cell(descricao)="row">
+                    <div class="mb-3">
+                      <label for="" class="form-label"></label>
+                        <textarea class="form-control" name="" id="" rows="3" disabled>{{row.item.descricao}}</textarea>
+                    </div>
+                </template>
+                <template #cell(created_at)="row">
+                    {{moment(row.item.created_at).format('DD/MM/YYYY H:mm')}}
+                </template>
+            </b-table>
+        </b-modal>
     </div>
 </template>
 <script>
@@ -87,21 +151,28 @@ export default {
             insumos: []
         },
         options: {
-          insumo: [
-            //   {
-            //     "id": 1,
-            //     "text": "Astrazenica",
-            //   },
-            //   {
-            //     "id": 2,
-            //     "text": "CoronaVac",
-            //   },
-            //   {
-            //     "id": 3,
-            //     "text": "Pfizer",
-            //   },
-          ],   
+          insumo: [],   
         },
+        historico: [],
+        filter: null,
+        filterOn: [],
+        totalRows: 0,
+        currentPage: 1,
+        perPage: 2,
+        pageOptions: [2, 10, 20, { value: 100, text: "Mostrar Todos" }],
+        fields:[
+            {
+                label: 'Descrição',
+                key: "descricao",
+                sortable: true
+            },
+            {
+                label: 'Data/Hora',
+                key: "created_at",
+                sortable: true
+            },
+            
+        ],
       }
     },
     methods: {
@@ -174,6 +245,15 @@ export default {
           return this.$store.dispatch('petInfo', this.pet_id)
                     .then(() => {
                         this.pet = this.$store.state.pet.pets;
+                    })
+      },
+      consultaProntuarioHistorico: function() {
+          this.$store.dispatch('consultaHistorico', this.prontuario.pet_id)
+                    .then(() => {
+                        this.historico = this.$store.state.prontuario.prontuario;
+                        console.log(this.historico);
+                        this.totalRows = this.historico.length;
+                        this.$refs['bv-modal-prontuario-historico'].show();
                     })
       }
     },

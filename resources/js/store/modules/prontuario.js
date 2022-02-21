@@ -7,8 +7,8 @@ export default {
     },
 
     mutations:{
-       SHOW_PRONTUARIO(state, SHOW_PRONTUARIO){
-        state.prontuario = SHOW_PRONTUARIO;
+       SHOW_PRONTUARIO(state, show_prontuario){
+        state.prontuario = show_prontuario;
        },
        NOVO_PRONTUARIO(state, NOVO_PRONTUARIO){
         state.prontuario.push(NOVO_PRONTUARIO);  
@@ -25,5 +25,10 @@ export default {
             return Axios.get('prontuario/show/')
                         .then(response=> context.commit('SHOW_PRONTUARIO', response.data))
         },
+
+        consultaHistorico(context, parametro) {
+            return Axios.get('../../../prontuario/historico/'+parametro)
+                        .then(response=> context.commit('SHOW_PRONTUARIO', response.data))
+        }
     },
 }

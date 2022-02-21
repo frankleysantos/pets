@@ -72,7 +72,7 @@ class RegisterController extends Controller
         ]);
 
 
-        return PerfilUsuario::create([
+        PerfilUsuario::create([
             'user_id' => $user->id,
             'status' => 'ativado',
         ]);

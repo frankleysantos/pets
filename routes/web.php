@@ -60,6 +60,7 @@ Route::group(['prefix' => 'historico', 'middleware' => 'auth'], function(){
 Route::group(['prefix' => 'prontuario', 'middleware' => 'auth'], function(){
     Route::get('index/{pet_id}/{agenda_id}', [App\Http\Controllers\ProntuarioController::class, 'index']);
     Route::post('store', [App\Http\Controllers\ProntuarioController::class, 'store']);
+    Route::get('historico/{pet_id}', [\App\Http\Controllers\ProntuarioController::class, 'historico']);
 });
 
 Route::group(['prefix' => 'insumo', 'middleware' => 'auth'], function(){
